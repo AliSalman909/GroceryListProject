@@ -14,6 +14,7 @@ export type Item = {
   checked_by: string | null;
   checked_by_name: string | null;
   checked_at: string | null;
+  quantity: string | null;
   is_locked: boolean;
   locked_by: string | null;
   locked_by_name: string | null;

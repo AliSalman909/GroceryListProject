@@ -85,9 +85,14 @@ export default function ItemCard({
           disabled={isLockedByOther}
         />
         <div className="item-card-content">
-          <span className={`item-name ${item.is_checked ? 'item-name--checked' : ''}`}>
-            {item.name}
-          </span>
+          <div className="item-name-row">
+            <span className={`item-name ${item.is_checked ? 'item-name--checked' : ''}`}>
+              {item.name}
+            </span>
+            {item.quantity && (
+              <span className="item-qty-badge">{item.quantity}</span>
+            )}
+          </div>
           {item.note && <span className="item-note">{item.note}</span>}
         </div>
       </div>
