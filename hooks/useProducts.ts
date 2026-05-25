@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import type { Product } from '@/lib/types';
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const channelName = useRef(`products-realtime-${Math.random().toString(36).slice(2)}`);
 
   const fetchProducts = useCallback(async () => {
     const supabase = getSupabaseBrowserClient();
@@ -22,7 +23,7 @@ export function useProducts() {
     fetchProducts();
     const supabase = getSupabaseBrowserClient();
     const channel = supabase
-      .channel('products-realtime')
+      .channel(channelName.current)
       .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, fetchProducts)
       .subscribe();
     return () => { supabase.removeChannel(channel); };
