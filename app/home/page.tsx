@@ -8,7 +8,6 @@ import { useSession } from '@/hooks/useSession';
 import ItemCard from '@/components/ItemCard';
 import AddItemForm from '@/components/AddItemForm';
 import ShoppingBanner from '@/components/ShoppingBanner';
-import FamilyAvatars from '@/components/FamilyAvatars';
 import CatalogPanel from '@/components/CatalogPanel';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import Link from 'next/link';
@@ -80,7 +79,6 @@ export default function HomePage() {
       <header className="fridge-header">
         <div className="fridge-header-left">
           <h1 className="fridge-title">Family Market</h1>
-          <FamilyAvatars currentUserId={user.id} currentUserName={displayName} session={session} />
         </div>
         <div className="fridge-header-right">
           <Link href="/trips" className="btn-trips">🛍️ Trips</Link>
