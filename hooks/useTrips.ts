@@ -28,7 +28,9 @@ export function useTrips() {
     return () => { supabase.removeChannel(channel); };
   }, [fetchTrips]);
 
-  const createTrip = useCallback(async (name: string, userId: string, userName: string): Promise<Trip | null> => {
+  const createTrip = useCallback(async (
+    name: string, userId: string, userName: string
+  ): Promise<{ trip: Trip | null; error: string | null }> => {
     const supabase = getSupabaseBrowserClient();
     const { data, error } = await supabase
       .from('trips')
@@ -37,9 +39,9 @@ export function useTrips() {
       .single();
     if (!error && data) {
       setTrips((prev) => [data, ...prev]);
-      return data;
+      return { trip: data, error: null };
     }
-    return null;
+    return { trip: null, error: error?.message ?? 'Failed to create trip' };
   }, []);
 
   const completeTrip = useCallback(async (tripId: string) => {

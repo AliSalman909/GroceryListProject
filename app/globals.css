@@ -17,8 +17,8 @@
   --locked: #d1d5db;
   --shadow-card: 3px 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-card-hover: 5px 8px 20px rgba(0, 0, 0, 0.22);
-  --font-display: var(--font-caveat), 'Caveat', cursive;
-  --font-body: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-display: 'Cavolini', cursive;
+  --font-body: 'Cavolini', cursive;
   --radius-card: 4px;
 }
 
@@ -1064,6 +1064,108 @@ input {
   border-color: #86efac;
   color: #059669;
   font-weight: 600;
+}
+
+/* ─── Trips Layout ───────────────────────────────────────────── */
+.trips-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 12px 20px;
+  flex-direction: column-reverse;
+}
+
+.trips-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.trips-sidebar {
+  width: 100%;
+}
+
+.trip-new-box {
+  background: #fffef7;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 20px 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.trip-new-box-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.trip-new-box-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.trip-new-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trip-new-input {
+  width: 100%;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 11px 13px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: #fff;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.trip-new-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+}
+.trip-new-input::placeholder { color: var(--text-muted); }
+
+.trip-new-submit {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.15s, transform 0.1s;
+}
+.trip-new-submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.trip-new-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.trip-create-error {
+  font-size: 0.82rem;
+  color: var(--accent);
+  background: rgba(220,38,38,0.07);
+  border: 1px solid rgba(220,38,38,0.2);
+  border-radius: 6px;
+  padding: 7px 10px;
+}
+
+@media (min-width: 700px) {
+  .trips-layout {
+    flex-direction: row;
+    padding: 16px 32px;
+  }
+  .trips-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+  }
 }
 
 /* ─── Trips List Page ────────────────────────────────────────── */

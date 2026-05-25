@@ -52,7 +52,7 @@ export const PRODUCT_CATEGORIES = [
 
 export const COMMON_STORES = [
   'Carrefour', 'Metro', 'Imtiaz', 'Naheed',
-  'Chase Up', 'Hyperstar', 'Al-Fatah', 'Agha\'s', 'Macro',
+  'Chase Up', 'Hyperstar', 'Al-Fatah', 'Agha\'s', 'Macro', 'PCC',
 ];
 
 export type Trip = {

@@ -27,6 +27,7 @@ export default function AddItemForm({ userId, userName, userAvatar }: AddItemFor
   const [priority, setPriority] = useState<Priority>('medium');
   const [adding, setAdding] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
+  const [addError, setAddError] = useState('');
   const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [suggestionOpen, setSuggestionOpen] = useState(false);
   const { products } = useProducts();
@@ -70,10 +71,11 @@ export default function AddItemForm({ userId, userName, userAvatar }: AddItemFor
   async function handleAdd() {
     if (!name.trim() || adding) return;
     setAdding(true);
+    setAddError('');
     setSuggestionOpen(false);
 
     const supabase = getSupabaseBrowserClient();
-    await supabase.from('items').insert({
+    const { error } = await supabase.from('items').insert({
       name: name.trim(),
       quantity: quantity.trim() || null,
       priority,
@@ -84,6 +86,10 @@ export default function AddItemForm({ userId, userName, userAvatar }: AddItemFor
     });
 
     setAdding(false);
+    if (error) {
+      setAddError(error.message);
+      return;
+    }
     setJustAdded(true);
     setName('');
     setQuantity('');
@@ -208,6 +214,8 @@ export default function AddItemForm({ userId, userName, userAvatar }: AddItemFor
                 })}
               </div>
             </div>
+
+            {addError && <p className="trip-create-error">{addError}</p>}
 
             {/* Add button */}
             <button

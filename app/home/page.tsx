@@ -37,7 +37,7 @@ function groupByPriority(items: Item[]): Record<Priority, Item[]> {
 
 export default function HomePage() {
   const { user, loading: userLoading } = useUser();
-  const { items, loading: itemsLoading, checkItem, lockItem } = useItems();
+  const { items, loading: itemsLoading, error: itemsError, checkItem, lockItem } = useItems();
   const { session, startSession, endSession } = useSession();
   const [catalogOpen, setCatalogOpen] = useState(false);
   const router = useRouter();
@@ -99,7 +99,12 @@ export default function HomePage() {
 
       <div className="fridge-content">
         <main className="fridge-board">
-          {itemsLoading ? (
+          {itemsError ? (
+            <div className="fridge-empty">
+              <p className="fridge-empty-text">⚠️ Could not load items</p>
+              <p className="fridge-empty-sub">{itemsError}</p>
+            </div>
+          ) : itemsLoading ? (
             <div className="fridge-empty"><div className="fridge-loading-dot" /></div>
           ) : !hasItems ? (
             <div className="fridge-empty">
