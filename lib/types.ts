@@ -27,6 +27,33 @@ export const PRIORITY_CONFIG: Record<Priority, { label: string; emoji: string; c
   low:    { label: 'Whenever', emoji: '🟢', color: '#059669', bg: '#f0fdf4', border: '#86efac' },
 };
 
+export type Product = {
+  id: string;
+  created_at: string;
+  name: string;
+  brand: string | null;
+  category: string | null;
+  price_min: number | null;
+  price_max: number | null;
+  unit: string | null;
+  stores: string[] | null;
+  image_url: string | null;
+  notes: string | null;
+  added_by: string | null;
+  added_by_name: string | null;
+};
+
+export const PRODUCT_CATEGORIES = [
+  'Dairy', 'Produce', 'Meat & Fish', 'Bakery',
+  'Pantry', 'Drinks', 'Snacks', 'Frozen',
+  'Household', 'Personal Care', 'Baby', 'Other',
+];
+
+export const COMMON_STORES = [
+  'Carrefour', 'Metro', 'Imtiaz', 'Naheed',
+  'Chase Up', 'Hyperstar', 'Al-Fatah', 'Agha\'s', 'Macro',
+];
+
 export type Trip = {
   id: string;
   created_at: string;
